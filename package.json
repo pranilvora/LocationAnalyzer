@@ -1,0 +1,15 @@
+{
+  "name": "location-analyzer",
+  "version": "1.0.0",
+  "description": "Server that will analyze entropy from location data on a mobile phone.",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.14.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pranil Vora",
+  "license": "ISC"
+}
