@@ -4,13 +4,14 @@
   "description": "Server that will analyze entropy from location data on a mobile phone.",
   "main": "app.js",
   "dependencies": {
-    "express": "^4.14.1",
+    "body-parser": "1.17.1",
     "ejs": "2.5.6",
-    "body-parser": "1.17.1"
+    "express": "^4.14.1",
+    "firebase": "^3.7.0"
   },
   "devDependencies": {},
   "scripts": {
-    "start" : "node app.js",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Pranil Vora",
