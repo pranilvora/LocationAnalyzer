@@ -12,6 +12,7 @@ admin.initializeApp({
 
 var db = admin.database();
 var locationsRef = db.ref("locations");
+var emergencyRef = db.ref("emergencyFlag");
 
 // var count = 0;
 
@@ -29,6 +30,15 @@ router.use(function(req, res, next) {
 
 router.get('/', (req, res) => res.json({ message: 'Location Analyzer API' }));
 
+router.route('/isEmergency')
+  .get(function(req,res) {
+    emergencyRef.once("value", function(snapshot) {
+      var flag = Object.keys(snapshot.val()).map(function(key) {
+        return snapshot.val()[key];
+      });
+    res.json(flag);
+    })
+  })
 
 router.route('/locations')
   .get(function(req,res) {
@@ -52,6 +62,18 @@ router.route('/submitLocation')
     });
     res.send(latitude + ', ' + longitude);
   });
+
+router.route('/engageEmergency')
+  .post(function(req,res) {
+    emergencyRef.set({emergencyFlag: true});
+    res.send("activated!");
+  });
+
+  router.route('/disengageEmergency')
+    .post(function(req,res) {
+      emergencyRef.set({emergencyFlag: false});
+      res.send("deactivated!");
+    });
 
 app.use('/api', router);
 app.listen(port);
