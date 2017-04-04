@@ -14,7 +14,7 @@ var db = admin.database();
 var ref = db.ref("locations");
 var locationsRef = ref.child("Latitudes + Longitudes");
 
-var count = 0;
+// var count = 0;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -40,8 +40,8 @@ router.route('/submitLocation')
   .post(function(req,res) {
     var latitude = req.body.lat;
     var longitude = req.body.long;
-    count = count +1;;
-    locationsRef.child(count).set({
+    // count = count +1;;
+    locationsRef.push({
       location: latitude + ', ' + longitude
     });
     res.send(latitude + ', ' + longitude);
