@@ -32,7 +32,14 @@ router.get('/', (req, res) => res.json({ message: 'Location Analyzer API' }));
 
 router.route('/locations')
   .get(function(req,res) {
-    res.json({"array": ["Subway","Panda Express","Tech Rec","Post Office"]});
+    locationsRef.once("value", function(snapshot) {
+      var locs = Object.keys(snapshot.val()).map(function(key) {
+        return snapshot.val()[key];
+      });
+      res.json(locs);
+    }, function (errorObject) {
+      console.log("Read Failed: " + errorObject.code);
+    });
   });
 
 router.route('/submitLocation')
