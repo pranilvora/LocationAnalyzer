@@ -11,8 +11,7 @@ admin.initializeApp({
 });
 
 var db = admin.database();
-var ref = db.ref("locations");
-var locationsRef = ref.child("Latitudes + Longitudes");
+var locationsRef = db.ref("locations");
 
 // var count = 0;
 
