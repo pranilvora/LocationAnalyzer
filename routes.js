@@ -14,8 +14,6 @@ var db = admin.database();
 var locationsRef = db.ref("locations");
 var emergencyRef = db.ref("emergencyFlag");
 
-// var count = 0;
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 var port = process.env.PORT || 8080;
@@ -54,13 +52,16 @@ router.route('/locations')
 
 router.route('/submitLocation')
   .post(function(req,res) {
+    var id = req.body.id;
     var latitude = req.body.lat;
     var longitude = req.body.long;
-    // count = count +1;;
-    locationsRef.push({
+    // locationsRef.push({
+    //   location: latitude + ', ' + longitude
+    // });
+    locationsRef.child(id).set({
       location: latitude + ', ' + longitude
     });
-    res.send(latitude + ', ' + longitude);
+    res.send("id " + id + "= " + latitude + ', ' + longitude);
   });
 
 router.route('/engageEmergency')
